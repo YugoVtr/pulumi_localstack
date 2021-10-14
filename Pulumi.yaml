@@ -1,0 +1,3 @@
+name: awslocal
+runtime: go
+description: create infra to local stack
