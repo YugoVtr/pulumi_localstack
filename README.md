@@ -9,24 +9,33 @@ How to deploy using `pulumi` in an AWS environment running on your machine with 
 
 ### Dependencies
 - [Docker](https://www.docker.com/get-started)
-- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
-- [Pulumi](https://www.pulumi.com/docs/get-started/aws/begin/)
+- [Docker Compose](https://docs.docker.com/compose/install)
 
-- **Wrappers**
-  - [AWS Local CLI](https://github.com/localstack/awscli-local)
-  - [Pulumi Local CLI](https://github.com/localstack/pulumi-local)
+## Running the container Pulumi
 
-### Install
-```bash
-make up
+1. First we need to configure the env `Pulumi_Access_Token` in the` .env` file. For this execute:
+
+```shell
+$ cp .env.sample .env
 ```
 
-### Remove Infra
-```bash
-make down
+2. Open the file, fill in the value of the env `pulumi_access_token` with its respective value to generate your token, follow this [document](https://www.pulumi.com/docs/intro/console/accounts-and-organizations/accounts/#access-tokens)
+
+3. To build and run the container that will rotate the pulumi, run:
+
+```shell
+$ docker-compose up -d
+$ make up
 ```
 
-### Local Stack Logs
-```bash
-docker logs --tail 1000 -f awslocal
+4. To access the container execute:
+
+```shell
+$ make console
+```
+
+5. To accompany the logs:
+
+```shell
+$ make logs
 ```
